@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit-3</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  display: flex;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.imag {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+.ima {
+  background-color: #aaa;
+  width: 70%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 700px) {
+  .row, .navbar {   
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Note -->
+<div style="background:yellow;padding:5px">
+ <h2 style="text-align:center">FLA GROUP PROJECT</h2>
+</div>
+
+<!-- Header -->
+<div class="header">
+   <h1>Formal Language and Automata</h1>
+  <p>This website contains course information on the subject Formal Language and Automata</p>
+</div>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+   <a href="index.html">Home</a>
+  <a href="U1.html">Unit-1</a>
+  <a href="U2.html">Unit-2</a>
+  <a href="U3.html">Unit-3</a>
+  <a href="U4.html">Unit-4</a>
+  <a href="U5.html">Unit-5</a>
+</div>
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+   <center>
+    <h2>Important Topics:</h2>
+    <h4>Pushdown Automata</h4>
+	<h4>Non-deterministic PDA</h4>
+	<h4>Conversion PDA to CFG</h4>
+	<h4>Pumping Lemma</h4>
+	<h4>Pumping Lemma for CFL</h4>
+	<br><br><br><br>
+	<h2>Syllabus:</h2></center>
+	<h4 align="center"><a href="syllabus.pdf">Click here</a></h4>
+	<a href="syllabus.pdf" download>
+	<button class="btn" style="width:100%;height:40px;"><i class="fa fa-download"></i> <b>Download Syllabus</b></button></a>
+  </div>
+  <div class="main">
+    <h2>Pushdown Automata (PDA)</h2>
+	<P>
+	A pushdown automaton is a way to implement a context-free grammar in a similar way we design DFA for a regular grammar. <br>
+	A DFA can remember a finite amount of information, but a PDA can remember an infinite amount of information.<br><br>
+		Basically a pushdown automaton is −<br>
+		<b>"Finite state machine" + "a stack"</b>
+		<ul>A pushdown automaton has three components −
+  		  <li>an input tape,
+  		  <li>a control unit, and
+  		  <li>a stack with infinite size.
+		</ul>
+		<ul>
+	<b>	A PDA can be formally described as a 7-tuple (Q, ∑, S, δ, q0, I, F) −</b>
+    		<li>Q is the finite number of states
+    		<li>∑ is input alphabet
+    		<li>S is stack symbols
+    		<li>δ is the transition function: Q × (∑ ∪ {ε}) × S × Q × S*
+			<li>q0 is the initial state (q0 ∈ Q)
+			<li>I is the initial stack top symbol (I ∈ S)
+			<li>F is a set of accepting states (F ∈ Q)
+		</ul>
+	</P>
+	<center><img class="ima" height="300px" src="pda.jpg"></center>
+	<P>
+	<b>The above diagram shows a transition in a PDA from a state q1 to state q2, labeled as a,b → c <br>
+	This means at state q1, if we encounter an input string ‘a’ and top symbol of the stack is ‘b’, then we pop ‘b’, 
+	push ‘c’ on top of the stack and move to state q2.</b>
+	</P>
+	<h2>Algorithm to find PDA corresponding to a given CFG</h2>
+	<P>
+	<b>Input −</b> A CFG, G = (V, T, P, S)<br>
+	<b>Output −</b> Equivalent PDA, P = (Q, ∑, S, δ, q0, I, F)<br>
+		<b>Step 1 −</b> Convert the productions of the CFG into GNF.<br>
+		<b>Step 2 −</b> The PDA will have only one state {q}.<br>
+		<b>Step 3 −</b> The start symbol of CFG will be the start symbol in the PDA.<br>
+		<b>Step 4 −</b> All non-terminals of the CFG will be the stack symbols of the PDA and all the terminals 
+		of the CFG will be the input symbols of the PDA.<br>
+		<b>Step 5 −</b> For each production in the form A → aX where a is terminal and A, X are combination 
+		of terminal and non-terminals, make a transition δ (q, a, A).
+	</P>
+	<h2>Algorithm to find CFG corresponding to a given PDA</h2>
+	<P>
+		<b>Input −</b> A CFG, G = (V, T, P, S)<br>
+		<b>Output −</b> Equivalent PDA, P = (Q, ∑, S, δ, q0, I, F) such that the non- terminals of the 
+		grammar G will be {Xwx | w,x ∈ Q} and the start state will be Aq0,F.<br>
+			<b>Step 1 −</b> For every w, x, y, z ∈ Q, m ∈ S and a, b ∈ ∑, if δ (w, a, ε) contains (y, m) 
+			and (z, b, m) contains (x, ε), add the production rule Xwx → a Xyzb in grammar G.<br>
+			<b>Step 2 −</b> For every w, x, y, z ∈ Q, add the production rule Xwx → XwyXyx in grammar G.<br>
+			<b>Step 3 −</b> For w ∈ Q, add the production rule Xww → ε in grammar G.<br>
+	</P>
+	<h2>Pumping Lemma</h2>
+	<p>
+	There are two Pumping Lemmas, which are defined for<br>
+		1. Regular Languages, and<br>
+		2. Context – Free Languages<br>
+	</p>
+	<h3>Pumping Lemma for Regular Languages</h3>
+	<p>
+	For any regular language L, there exists an integer n, such that for all x ∈ L with |x| ≥ n, 
+	there exists u, v, w ∈ Σ∗, such that x = uvw, and<br>
+		(1) |uv| ≤ n<br>
+		(2) |v| ≥ 1<br>
+		(3) for all i ≥ 0: uviw ∈ L<br><br>
+		In simple terms, this means that if a string v is ‘pumped’, i.e., if v is inserted any number of times, 
+		the resultant string still remains in L.<br>
+	</p>
+	<h3>Pumping Lemma for Context-free Languages (CFL)</h3>
+	<p>
+	Pumping Lemma for CFL states that for any Context Free Language L, it is possible to find two 
+	substrings that can be ‘pumped’ any number of times and still be in the same language. For any 
+	language L, we break its strings into five parts and pump second and fourth substring.<br>
+	Thus, if L is a CFL, there exists an integer n, such that for all x ∈ L with |x| ≥ n, there 
+	exists u, v, w, x, y ∈ Σ∗, such that x = uvwxy, and<br>
+		(1) |vwx| ≤ n<br>
+		(2) |vx| ≥ 1<br>
+		(3) for all i ≥ 0: uviwxiy ∈ L<br>
+	For above example, 0n1n is CFL, as any string can be the result of pumping at two places, one for 0 and other for 1.
+	</p>
+	<center><img class="ima" height="300" src="pl.png"></center>
+	</div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <h2>Some important simulation links:</h2>
+  <h4><a href="http://www.asethome.org/pda/">http://www.asethome.org/pda/</a></h4>
+  <h4><a href="http://weitz.de/pump/">http://weitz.de/pump/</a></h4>
+  <h4><a href="https://users.cs.duke.edu/~rodger/tools/tools.html">https://users.cs.duke.edu/~rodger/tools/tools.html</a></h4>
+  <h4><a href="http://www.jflap.org/tutorial/grammar/toPDA/index.html">http://www.jflap.org/tutorial/grammar/toPDA/index.html</a></h4>
+</div>
+
+</body>
+</html>

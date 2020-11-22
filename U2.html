@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit-2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  display: flex;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.imag {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+.ima {
+  background-color: #aaa;
+  width: 70%;
+  padding: 20px;
+}
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 700px) {
+  .row, .navbar {   
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Note -->
+<div style="background:yellow;padding:5px">
+ <h2 style="text-align:center">FLA GROUP PROJECT</h2>
+</div>
+
+<!-- Header -->
+<div class="header">
+   <h1>Formal Language and Automata</h1>
+  <p>This website contains course information on the subject Formal Language and Automata</p>
+</div>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+   <a href="index.html">Home</a>
+  <a href="U1.html">Unit-1</a>
+  <a href="U2.html">Unit-2</a>
+  <a href="U3.html">Unit-3</a>
+  <a href="U4.html">Unit-4</a>
+  <a href="U5.html">Unit-5</a>
+</div>
+
+<!-- The flexible grid (content) -->
+<div class="row">
+  <div class="side">
+    <center>
+    <h2>Important Topics:</h2>
+    <h4>Context free grammar</h4>
+	<h4>Simplification of CFG</h4>
+	<h4>Chomsky Normal Form</h4>
+	<h4>Greiback Normal Form</h4>
+	<h4>Conversion</h4>
+	<br><br><br><br>
+	<h2>Syllabus:</h2></center>
+	<h4 align="center"><a href="syllabus.pdf">Click here</a></h4>
+	<a href="syllabus.pdf" download>
+	<button class="btn" style="width:100%;height:40px;"><i class="fa fa-download"></i> <b>Download Syllabus</b></button></a>
+  </div>
+  <div class="main">
+    <h2>Context Free Grammar</h2>
+	<p>
+	A context-free grammar (CFG) consisting of a finite set of grammar rules is a quadruple (N, T, P, S) where<br>
+    N is a set of non-terminal symbols.<br>
+    T is a set of terminals where N ∩ T = NULL.<br>
+    P is a set of rules, P: N → (N ∪ T)*, i.e., the left-hand side of the production rule P does have any right context or left context.<br>
+    S is the start symbol.<br>
+	</p>
+	<p>
+	Representation Technique:<br>
+    Root vertex − Must be labeled by the start symbol.<br>
+    Vertex − Labeled by a non-terminal symbol.<br>
+    Leaves − Labeled by a terminal symbol or ε.<br>
+	</p>
+	<h4>Example:</h4>
+	<p>
+	Let a CFG {N,T,P,S} be<br>
+		N = {S}, T = {a, b}, Starting symbol = S, P = S → SS | aSb | ε<br>
+		One derivation from the above CFG is “abaabb”<br>
+		S → SS → aSbS → abS → abaSb → abaaSbb → abaabb<br>
+	</p>
+	<center>
+	<img class="ima" src="cfg.jpg" height="250">
+	</center>
+	<h2>Simplification of CFG</h2>
+	<p>
+	In a CFG, it may happen that all the production rules and symbols are not needed for the derivation of strings. 
+	Besides, there may be some null productions and unit productions. Elimination of these productions and symbols 
+	is called simplification of CFGs. Simplification essentially comprises of the following steps −
+	<ul>
+    <li>Reduction of CFG
+    <li>Removal of Unit Productions
+    <li>Removal of Null Productions
+	</ul>
+	<ol>The properties of reduced grammar are given below:
+    <li>Each variable (i.e. non-terminal) and each terminal of G appears in the derivation of some word in L.
+    <li>There should not be any production as X → Y where X and Y are non-terminal.
+    <li>If ε is not in the language L then there need not to be the production X → ε.
+	</OL>
+	</p>
+	<center>
+	<img class="ima" src="simcfg.png" height="250px">
+	</center>
+	<h2>Chomsky's Normal Form (CNF)</h2>
+	<p>
+	A CFG(context free grammar) is in CNF(Chomsky normal form) if all production rules satisfy one of the following conditions:
+	<ul>
+    <li>Start symbol generating ε. For example, A → ε.
+    <li>A non-terminal generating two non-terminals. For example, S → AB.
+    <li>A non-terminal generating a terminal. For example, S → a.
+	</ul>
+	</p>
+	<p>
+	<b>Algorithm to Convert into Chomsky Normal Form −</b><br>
+		<b>Step 1 −</b> If the start symbol S occurs on some right side, create a new start symbol S’ and a new production S’→ S.<br>
+		<b>Step 2 −</b> Remove Null productions. (Using the Null production removal algorithm discussed earlier)<br>
+		<b>Step 3 −</b> Remove unit productions. (Using the Unit production removal algorithm discussed earlier)<br>
+		<b>Step 4 −</b> Replace each production A → B1…Bn where n > 2 with A → B1C where C → B2 …Bn. Repeat this step for 
+		all productions having two or more symbols in the right side.<br>
+		<b>Step 5 −</b> If the right side of any production is in the form A → aB where a is a terminal and A, B are non-terminal, 
+		then the production is replaced by A → XB and X → a. Repeat this step for every production which is in the form A → aB.<br>
+	</p>
+	<h2>Greibach Normal Form (GNF)</h2>
+	<p>
+	A CFG(context free grammar) is in GNF(Greibach normal form) if all the production rules satisfy one of the following conditions:
+	<ul>
+    <li>A start symbol generating ε. For example, S → ε.
+    <li>A non-terminal generating a terminal. For example, A → a.
+    <li>A non-terminal generating a terminal which is followed by any number of non-terminals. For example, S → aASB.
+	</ul>
+	</p>
+	<p>
+	<b>Algorithm to Convert a CFG into Greibach Normal Form-</b><br>
+		<b>Step 1 −</b> If the start symbol S occurs on some right side, create a new start symbol S’ and a new production S’ → S.<br>
+		<b>Step 2 −</b> Remove Null productions. (Using the Null production removal algorithm discussed earlier)<br>
+		<b>Step 3 −</b> Remove unit productions. (Using the Unit production removal algorithm discussed earlier)<br>
+		<b>Step 4 −</b> Remove all direct and indirect left-recursion.<br>
+		<b>Step 5 −</b> Do proper substitutions of productions to convert it into the proper form of GNF.<br>
+	</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+ <h2>Some important simulation links:</h2>
+  <h4><a href="https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/cfg/">https://web.stanford.edu/class/archive/cs/cs103/cs103.1156/tools/cfg/</a></h4>
+  <h4><a href="https://cyberzhg.github.io/toolbox/">https://cyberzhg.github.io/toolbox/</a></h4>
+  <h4><a href="https://cyberzhg.github.io/toolbox/cfg2cnf">https://cyberzhg.github.io/toolbox/cfg2cnf</a></h4>
+</div>
+
+</body>
+</html>
